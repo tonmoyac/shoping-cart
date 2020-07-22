@@ -29,7 +29,7 @@
                            <input type="text" class="form-control text-center" id="product-number" value="1">
                            <button class="btn btn-default" id="plus-btn"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$<span id="product-price">1219</span></h5>
+                        <h5>$<span id="iPhone-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default" id="minus-btn2"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" id="product-number2" value="1">
+                           <button class="btn btn-default" id="plus-btn2"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$<span id="iPhone-case-price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,12 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ 
+                        <span id="sub-total">1278</span>
+                        </h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total">1278</span>
+                        </h5>
                      </div>
                   </div>
                </div>
@@ -79,31 +82,55 @@
    </section>
 
 <script>
-// iPhone Black
+// iPhone Price Counter
 const plusBtn = document.getElementById("plus-btn");
 plusBtn.addEventListener("click",function(){
 
-   count("product-number", "product-price", +1)
-
+   count("product-number", "iPhone-price", +1, 1219) 
 })
+
 const minusBtn = document.getElementById("minus-btn");
-minusBtn.addEventListener("click", function(){
-   
-count("product-number","product-price", -1)
+minusBtn.addEventListener("click", function(){ 
 
+   count("product-number","iPhone-price", -1, 1219);
 })
-function count(id, price ,a){
-   const productNumber = document.getElementById(id).value;
-const productCurrentNumber = parseFloat(productNumber);
-const plusedNumber= productCurrentNumber + a;
-document.getElementById(id).value = plusedNumber;
-const productCurrentPrice = 1219*plusedNumber;
-console.log(productCurrentPrice);
-document.getElementById(price).innerText =productCurrentPrice;
+
+// iPhone Case Price Counter
+const plusBtn2 = document.getElementById("plus-btn2");
+plusBtn2.addEventListener("click",function(){
+
+   count("product-number2", "iPhone-case-price", +1, 59)  
+})
+
+const minusBtn2 = document.getElementById("minus-btn2");
+minusBtn2.addEventListener("click", function(){
+   
+   count("product-number2","iPhone-case-price", -1, 59)
+})
+
+// Function for All
+function count(productNumber, priceAfterSum, productMultiplier, productPrice){
+   const numberOfProduct = document.getElementById(productNumber).value;
+
+   const productCurrentNumber = parseFloat(numberOfProduct);
+   const quantity = productCurrentNumber + productMultiplier;
+   document.getElementById(productNumber).value = quantity;
+   const productCurrentPrice = productPrice * quantity;
+   document.getElementById(priceAfterSum).innerText = productCurrentPrice;
+
+   // Calculation Of Total and SubTotal
+   const totalPrice = document.getElementById("sub-total").innerText;
+   const total2 = parseFloat(totalPrice);
+   const iPhonePrice = document.getElementById("iPhone-price").innerText;
+   const iPhoneCurrentPrice = parseFloat(iPhonePrice);
+   const casePrice = document.getElementById("iPhone-case-price").innerText;
+   const currentCasePrice = parseFloat(casePrice);
+   const totalAllPrice = iPhoneCurrentPrice + currentCasePrice;
+   console.log(totalAllPrice);
+   document.getElementById("sub-total").innerText = totalAllPrice;
+   document.getElementById("total").innerText = totalAllPrice;
 }
 </script>
-
-
 
 </body>
 
