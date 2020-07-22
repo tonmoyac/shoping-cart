@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button class="btn btn-default" id="minus-btn"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" id="product-number" value="1">
+                           <button class="btn btn-default" id="plus-btn"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$<span id="product-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,37 @@
          </div>
       </div>
    </section>
+
+<script>
+// iPhone Black
+const plusBtn = document.getElementById("plus-btn");
+plusBtn.addEventListener("click",function(){
+
+const productNumber = document.getElementById("product-number").value;
+const productCurrentNumber = parseFloat(productNumber);
+const plusedNumber= productCurrentNumber +1;
+document.getElementById("product-number").value = plusedNumber;
+
+const productCurrentPrice = 1219*plusedNumber;
+console.log(productCurrentPrice);
+document.getElementById("product-price").innerText =productCurrentPrice;
+})
+const minusBtn = document.getElementById("minus-btn");
+minusBtn.addEventListener("click", function(){
+
+const productNumber = document.getElementById("product-number").value;
+const productCurrentNumber = parseFloat(productNumber);
+const plusedNumber= productCurrentNumber -1;
+document.getElementById("product-number").value = plusedNumber;
+const productCurrentPrice = 1219*plusedNumber;
+console.log(productCurrentPrice);
+document.getElementById("product-price").innerText =productCurrentPrice;
+
+})
+</script>
+
+
+
 </body>
 
 </html>
