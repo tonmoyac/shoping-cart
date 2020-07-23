@@ -16,7 +16,7 @@
       <div class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
-               <div class="cart-item">
+               <div class="cart-item" id="iphone-card">
                   <div class="row">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
@@ -30,12 +30,12 @@
                            <button class="btn btn-default" id="plus-btn"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$<span id="iPhone-price">1219</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" class="remove-item" id="iphone-cross">
                      </div>
                   </div>
                </div>
 
-               <div class="cart-item">
+               <div class="cart-item" id="case-card">
                   <div class="row">
                      <div class="col-md-7 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
@@ -49,7 +49,7 @@
 
                         </div>
                         <h5>$<span id="iPhone-case-price">59</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" class="remove-item" id="case-cross">
                      </div>
                   </div>
                </div>
@@ -126,9 +126,37 @@ function count(productNumber, priceAfterSum, productMultiplier, productPrice){
    const casePrice = document.getElementById("iPhone-case-price").innerText;
    const currentCasePrice = parseFloat(casePrice);
    const totalAllPrice = iPhoneCurrentPrice + currentCasePrice;
-   console.log(totalAllPrice);
    document.getElementById("sub-total").innerText = totalAllPrice;
    document.getElementById("total").innerText = totalAllPrice;
+}
+// Cross System
+const iPhoneCross = document.getElementById("iphone-cross");
+   iPhoneCross.addEventListener("click", function(){
+        const iPhonecard = document.getElementById("iphone-card");
+        iPhonecard.style.display = "none";
+
+   const iPhonePrice = document.getElementById("iPhone-price").innerText;
+   const iPhoneCurrentPrice = parseFloat(iPhonePrice);
+
+        crossing(iPhoneCurrentPrice);
+})
+const cardCross = document.getElementById("case-cross");
+   cardCross.addEventListener("click", function(){
+        const caseCard = document.getElementById("case-card");
+        caseCard.style.display = "none";
+
+   const casePrice = document.getElementById("iPhone-case-price").innerText;
+   const currentCasePrice = parseFloat(casePrice);
+
+      crossing(currentCasePrice);
+})
+
+function crossing(price){
+   const totalPrice = document.getElementById("sub-total").innerText;
+      const total2 = parseFloat(totalPrice)
+      const crossingPrice = totalPrice - price;
+   document.getElementById("sub-total").innerText = crossingPrice;
+   document.getElementById("total").innerText = crossingPrice;
 }
 </script>
 
